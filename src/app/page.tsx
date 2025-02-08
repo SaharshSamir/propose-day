@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import { useState } from "react";
+import { StaticImageData } from "next/image";
 import Link from "next/link";
 import Question1 from "../assets/question1.jpg";
 import Sad1 from "../assets/sad1.jpg";

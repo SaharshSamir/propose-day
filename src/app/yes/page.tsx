@@ -1,6 +1,6 @@
 'use client';
 import { StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Confetti from 'react-confetti'
 import Cat1 from "../../assets/happy1.gif";
 import Cat2 from "../../assets/happy2.gif";
