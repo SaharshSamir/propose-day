@@ -1,6 +1,7 @@
 'use client';
+
 import { StaticImageData } from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Confetti from 'react-confetti'
 import Cat1 from "../../assets/happy1.gif";
 import Cat2 from "../../assets/happy2.gif";
@@ -11,7 +12,7 @@ import Cat6 from "../../assets/happy6.gif";
 
 const cats = [Cat1, Cat2, Cat3, Cat4, Cat5, Cat6];
 
-function generateRandomIndex(current: number, forArray: Array<any>) {
+function generateRandomIndex(current: number, forArray: Array<StaticImageData>) {
   const generate = () => Math.floor(Math.random() * forArray.length);
 
   let randomIndex = generate();
@@ -23,10 +24,19 @@ function generateRandomIndex(current: number, forArray: Array<any>) {
 
 export default function Yes() {
   const [img, setImg] = useState<StaticImageData>(Cat1);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  let width = 0;
+  let height = 0;
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+  }, []);
   function changeImg() {
 
     const currentIndex = cats.indexOf(img);
@@ -37,7 +47,7 @@ export default function Yes() {
 
   return (
     <div className="h-screen w-screen flex flex-col cursor-pointer items-center justify-center">
-      <Confetti width={width} height={height} />
+      <Confetti width={dimensions.width} height={dimensions.height} />
       <div onClick={changeImg} className=" h-[25rem] w-[30rem] border border-black">
         <img
           src={img.src}

@@ -37,7 +37,7 @@ const possibleNoTexts = [
   "Lol can't catch me? 🏃‍♂️",
 ]
 
-function generateRandomIndex(current: number, forArray: Array<any>) {
+function generateRandomIndex(current: number, forArray: Array<unknown>) {
   const generate = () => Math.floor(Math.random() * forArray.length);
 
   let randomIndex = generate();
@@ -68,10 +68,14 @@ export default function Home() {
   }
 
   function noNo() {
-    setCord({
-      x: Math.floor(Math.random() * (window.innerHeight - 200)),
-      y: Math.floor(Math.random() * (window.innerWidth - 200)),
-    });
+    if (window !== undefined) {
+      // browser code
+      setCord({
+        x: Math.floor(Math.random() * (window?.innerHeight - 200)),
+        y: Math.floor(Math.random() * (window?.innerWidth - 200)),
+      });
+    }
+
     const currentIndex = possibleNoTexts.indexOf(response);
     const randomIndex = generateRandomIndex(currentIndex, possibleNoTexts);
     setResponse(possibleNoTexts[randomIndex]);

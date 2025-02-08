@@ -2,6 +2,11 @@
   "name": "propose-day",
   "version": "0.1.0",
   "private": true,
+  "eslintConfig": {
+    "globals": {
+      "window": true
+    }
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
